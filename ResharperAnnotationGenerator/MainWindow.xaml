@@ -1,0 +1,27 @@
+﻿<Window x:Class="ResharperAnnotationGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ResharperAnnotationGenerator"
+        xmlns:models="clr-namespace:ResharperAnnotationGenerator.Models"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:ViewModel></local:ViewModel>
+    </Window.DataContext>
+    <DockPanel Margin="10">
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <Button Name="BtnOpenFile" Command="{Binding Path=OpenFileCommand, Mode=OneWay}">Open file</Button>
+            <TextBlock Text="{Binding Path=AssemblyModel.Name}"></TextBlock>
+        </WrapPanel>
+        <TreeView ItemsSource="{Binding Path=AssemblyModel.Members}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate>
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+
+        </TreeView>
+    </DockPanel>
+</Window>
